@@ -12,8 +12,8 @@ Follow these steps to get your project up and running:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/your-project.git
-   cd your-project
+   git clone https://github.com/GianDiazArce/twitter-clone.git
+   cd twitter-clone
    ```
 
 2. **Create environment variables:**
