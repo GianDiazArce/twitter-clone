@@ -1,4 +1,5 @@
 import './globals.css'
+import '@sweetalert2/theme-dark/dark.css'
 import type { Metadata } from 'next'
 import { Providers } from './providers'
 

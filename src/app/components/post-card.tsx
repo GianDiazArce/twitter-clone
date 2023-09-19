@@ -24,6 +24,7 @@ import {
   IconRepeat
 } from '@tabler/icons-react'
 import Link from 'next/link'
+import Swal from 'sweetalert2'
 import { deletePost } from '../actions/delete-post.action'
 
 interface PostCardProps {
@@ -43,6 +44,34 @@ export function PostCard ({
 }: PostCardProps) {
   const { isOpen, onOpenChange } = useDisclosure()
   // console.log({ userId })
+  const handleDelete = (id: string) => {
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: 'Esta acción no se puede revertir',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await deletePost(id)
+          Swal.fire(
+            'Eliminado',
+            'El post ha sido eliminado',
+            'success'
+          )
+        } catch (error) {
+          Swal.fire(
+            'Error',
+            'Ha ocurrido un error al eliminar el post',
+            'error'
+          )
+        }
+      }
+    })
+  }
+
   return (
     <>
       <Card className="bg-transparent shadow-none hover:bg-slate-800 transition border-b border-white/20 rounded-none cursor-pointer">
@@ -67,9 +96,9 @@ export function PostCard ({
                   </button>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Static Actions">
-                  <DropdownItem key="edit">Editar</DropdownItem>
+                  <DropdownItem key="edit" onClick={async () => await Swal.fire('Hola', 'test', 'success')}>Editar</DropdownItem>
                   <DropdownItem
-                    onClick={() => { deletePost(id) }}
+                    onClick={() => { handleDelete(id) }}
                     key="delete"
                     className="text-danger"
                     color="danger"
