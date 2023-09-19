@@ -22,6 +22,7 @@ export function PostsList ({ posts }: { posts: Post[] | null }) {
           return (
             <PostCard
               key={id}
+              id={id}
               username={username}
               userfullName={userfullName}
               avatarUrl={avatarUrl}
