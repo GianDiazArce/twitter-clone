@@ -19,7 +19,7 @@ export default async function RootLayout ({
 }) {
   const supabase = createServerComponentClient<Database>({ cookies })
   const { data: { session } } = await supabase.auth.getSession()
-  console.log(session)
+  // console.log(session)
   return (
     <html lang="en" className='dark'>
       <body>
