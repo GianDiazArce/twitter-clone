@@ -5,12 +5,14 @@ import { GithubIcon } from './icons'
 
 export function AuthButton ({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient()
+  // get url base
+  const url = window.location.origin
 
   const handleSignIn = async () => {
     await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: 'http://localhost:3000/auth/callback'
+        redirectTo: `${url}/auth/callback`
       }
     })
   }
