@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Clon de twitter',
   description: 'Generando un clon de twitter con nextjs'
 }
-
+export const dynamic = 'force-dynamic'
 export default async function RootLayout ({
   children
 }: {
