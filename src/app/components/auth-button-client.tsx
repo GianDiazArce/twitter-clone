@@ -18,6 +18,14 @@ export function AuthButton ({ session }: { session: Session | null }) {
           redirectTo: `${url}/auth/callback`
         }
       })
+    } else {
+      url = 'https://twitter-clone-mlg4.vercel.app'
+      await supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+          redirectTo: `${url}/auth/callback`
+        }
+      })
     }
   }
 
