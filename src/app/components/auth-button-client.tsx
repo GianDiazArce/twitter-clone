@@ -6,15 +6,19 @@ import { GithubIcon } from './icons'
 export function AuthButton ({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient()
   // get url base
-  const url = window.location.origin
 
   const handleSignIn = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: 'github',
-      options: {
-        redirectTo: `${url}/auth/callback`
-      }
-    })
+    let url: string = ''
+
+    if (typeof window !== 'undefined') {
+      url = window.location.origin
+      await supabase.auth.signInWithOAuth({
+        provider: 'github',
+        options: {
+          redirectTo: `${url}/auth/callback`
+        }
+      })
+    }
   }
 
   // useEffect(() => {
